@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'navigation/main_navigator.dart';
 
-// --- DEFINISI WARNA PROYEK ---
+// --- DEFINISI WARNA PROYEK (ENGINE LOG PRO) ---
 // Primary Color: Deep Blue (#1A237E)
 const int _deepBluePrimaryValue = 0xFF1A237E;
 const MaterialColor customPrimarySwatch = MaterialColor(
@@ -17,7 +17,7 @@ const MaterialColor customPrimarySwatch = MaterialColor(
 const Color customAccentColor = Color(0xFFFFD700); 
 // Background Color: Light Blue-Gray (#D2D6EB)
 const Color customBackgroundColor = Color(0xFFD2D6EB); 
-// -----------------------------
+// ----------------------------------------------
 
 void main() {
   runApp(MyApp());
@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Engine Log Pro',
-      // Menghapus Banner Debug di pojok
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // 1. PRIMARY COLOR (untuk AppBar, dll)
@@ -42,17 +41,17 @@ class MyApp extends StatelessWidget {
         // 3. BACKGROUND COLOR (Latar belakang Scaffolds)
         scaffoldBackgroundColor: customBackgroundColor,
         
-        // 4. BOTTOM NAVIGATION BAR (Warna dasar Bottom Tab)
+        // 4. BOTTOM NAVIGATION BAR
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: customPrimarySwatch.shade800, // Biru Tua
-          selectedItemColor: customAccentColor, // Ikon terpilih Kuning
-          unselectedItemColor: Colors.white70, // Ikon tidak terpilih putih redup
+          backgroundColor: customPrimarySwatch.shade800, 
+          selectedItemColor: customAccentColor, 
+          unselectedItemColor: Colors.white70, 
         ),
         
         useMaterial3: true,
       ),
-      // Set Navigator sebagai halaman utama
-      home: MainNavigator(),
+      // PERBAIKAN: Hapus 'const' karena MainNavigator adalah StatefulWidget
+      home: MainNavigator(), 
     );
   }
 }
