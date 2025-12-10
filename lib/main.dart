@@ -1,43 +1,58 @@
 import 'package:flutter/material.dart';
+import 'navigation/main_navigator.dart';
 
-void main() => runApp(MyApp());
+// --- DEFINISI WARNA PROYEK ---
+// Primary Color: Deep Blue (#1A237E)
+const int _deepBluePrimaryValue = 0xFF1A237E;
+const MaterialColor customPrimarySwatch = MaterialColor(
+  _deepBluePrimaryValue,
+  <int, Color>{
+    50: Color(0xFFE8EAF6), 100: Color(0xFFC5CBE9), 200: Color(0xFF9FA8DA),
+    300: Color(0xFF7986AC), 400: Color(0xFF5C6BC0), 500: Color(0xFF3F51B5),
+    600: Color(0xFF3949AB), 700: Color(0xFF303F9F), 800: Color(0xFF283593),
+    900: Color(_deepBluePrimaryValue),
+  },
+);
+// Accent/Secondary Color: Vibrant Yellow (#FFD700)
+const Color customAccentColor = Color(0xFFFFD700); 
+// Background Color: Light Blue-Gray (#D2D6EB)
+const Color customBackgroundColor = Color(0xFFD2D6EB); 
+// -----------------------------
+
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      title: 'Engine Log Pro',
+      // Menghapus Banner Debug di pojok
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+        // 1. PRIMARY COLOR (untuk AppBar, dll)
+        primaryColor: customPrimarySwatch,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: customPrimarySwatch,
+        ).copyWith(
+          // 2. ACCENT COLOR (untuk Floating Button, indikator, dll)
+          secondary: customAccentColor, 
         ),
+        // 3. BACKGROUND COLOR (Latar belakang Scaffolds)
+        scaffoldBackgroundColor: customBackgroundColor,
+        
+        // 4. BOTTOM NAVIGATION BAR (Warna dasar Bottom Tab)
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: customPrimarySwatch.shade800, // Biru Tua
+          selectedItemColor: customAccentColor, // Ikon terpilih Kuning
+          unselectedItemColor: Colors.white70, // Ikon tidak terpilih putih redup
+        ),
+        
+        useMaterial3: true,
       ),
+      // Set Navigator sebagai halaman utama
+      home: MainNavigator(),
     );
   }
 }
