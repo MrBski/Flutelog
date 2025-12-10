@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../screens/dashboard_screen.dart';
-import '../screens/log_recording_screen.dart';
-import '../screens/inventory_screen.dart';
-import '../screens/settings_screen.dart';
+// PERBAIKAN: Tambahkan '../' untuk mundur dari folder 'navigation' ke 'lib'
+import '../screens/dashboard_screen.dart';      
+import '../screens/log_recording_screen.dart';   
+import '../screens/inventory_screen.dart';      
+import '../screens/settings_screen.dart';      
 
 class MainNavigator extends StatefulWidget {
   @override
@@ -12,12 +13,12 @@ class MainNavigator extends StatefulWidget {
 class _MainNavigatorState extends State<MainNavigator> {
   int _selectedIndex = 0; // Index untuk melacak Tab yang dipilih
 
-  // Daftar Widget/Halaman yang akan ditampilkan di Tab Bar
+  // Daftar Widget/Halaman
   final List<Widget> _screens = [
-    DashboardScreen(),      // Halaman 0: Dashboard (Quick Status)
-    LogRecordingScreen(),   // Halaman 1: Perekaman Log Offline
-    InventoryScreen(),      // Halaman 2: Manajemen Stok
-    SettingsScreen(),       // Halaman 3: Pengaturan Kapal/Petugas
+    DashboardScreen(),      // Dashboard (Quick Status)
+    LogRecordingScreen(),   // Perekaman Log Offline
+    InventoryScreen(),      // Manajemen Stok
+    SettingsScreen(),       // Pengaturan Kapal/Petugas
   ];
 
   void _onItemTapped(int index) {
@@ -29,10 +30,9 @@ class _MainNavigatorState extends State<MainNavigator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Widget yang dipilih ditampilkan di sini
       body: _screens[_selectedIndex], 
       
-      // Bottom Navigation Bar (Struktur Tab)
+      // Bottom Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -54,7 +54,7 @@ class _MainNavigatorState extends State<MainNavigator> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed, // Pastikan semua Tab terlihat
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
